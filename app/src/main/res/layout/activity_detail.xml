@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity"
     android:orientation="vertical"
+    android:transitionName="movieTransition"
+
     >
 
     <com.google.android.youtube.player.YouTubePlayerView

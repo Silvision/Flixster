@@ -2,6 +2,7 @@ package com.example.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RatingBar;
@@ -32,6 +33,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     YouTubePlayerView youTubePlayerView;
 
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class DetailActivity extends YouTubeBaseActivity {
                     }
                     String youtubeKey = results.getJSONObject(0).getString("key");
                     Log.d("DetailActivity", youtubeKey);
-                    intializeYoutube(youtubeKey);
+                    initializeYoutube(youtubeKey);
 
                 } catch (JSONException e) {
                     Log.e("DetailActivity", "Failed to parse JSON", e);
@@ -76,7 +78,7 @@ public class DetailActivity extends YouTubeBaseActivity {
 
     }
 
-    private void intializeYoutube(String youtubeKey) {
+    private void initializeYoutube(String youtubeKey) {
         youTubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {

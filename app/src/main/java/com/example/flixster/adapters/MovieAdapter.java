@@ -1,5 +1,6 @@
 package com.example.flixster.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -15,10 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixster.DetailActivity;
+import com.example.flixster.MainActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
 
@@ -102,15 +105,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             Glide.with(context).load(imageURL).placeholder(R.drawable.placeholder).into(ivPoster);
 
             // 1. Register click listener on the whole row
-            container .setOnClickListener(new View.OnClickListener() {
+            container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // 2. Navigate to a new activity on tap
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
-                    context.startActivity(i);
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) context, container, "movieTransition");
+                    context.startActivity(i, options.toBundle());
                 }
             });
+
+
+
 
         }
     }
