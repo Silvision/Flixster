@@ -24,7 +24,6 @@ import okhttp3.Headers;
 
 public class DetailActivity extends YouTubeBaseActivity {
 
-    private static final String YOUTUBE_API_KEY = "AIzaSyDfDIhyRhyL64bGOYHmlWg0YK7Hf2q7fUk";
     public static final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     TextView tvTitle;
@@ -48,6 +47,8 @@ public class DetailActivity extends YouTubeBaseActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
         ratingBar.setRating((float) movie.getRating());
+
+
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(String.format(VIDEOS_URL, movie.getMovieId()), new JsonHttpResponseHandler() {
@@ -79,11 +80,18 @@ public class DetailActivity extends YouTubeBaseActivity {
     }
 
     private void initializeYoutube(String youtubeKey) {
+        String YOUTUBE_API_KEY = getString(R.string.youtube_api_key);
         youTubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializationSuccess");
-                youTubePlayer.cueVideo(youtubeKey);
+
+                if(ratingBar.getRating() > 5){
+                    youTubePlayer.loadVideo(youtubeKey);
+                }
+                else {
+                    youTubePlayer.cueVideo(youtubeKey);
+                }
 
             }
 
