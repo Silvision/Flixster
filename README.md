@@ -18,16 +18,18 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
   - [ ] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
 - [ ] Add a play icon overlay to popular movies to indicate that the movie can be played (1 point).
 - [ ] Apply the popular ButterKnife annotation library to reduce view boilerplate. (1 point)
-- [ ] Add a rounded corners for the images using the Glide transformations. (1 point)
+- [x] Add a rounded corners for the images using the Glide transformations. (1 point)
 
 ### App Walkthough GIF
 
-<img src="https://github.com/Silvision/Flixster/blob/main/walkthrough2.gif" width=250><br>
+<img src="https://github.com/Silvision/Flixster/blob/main/walkthroughPart2.gif" width=250><br>
 
 ### Notes
 
-While the app is still working fine, I keep seeing errors such as "E/YouTubeAndroidPlayerAPI: Embed config is not supported in RemoteEmbeddedPlayer." and 
+- While the app is still working fine, I keep seeing errors such as "E/YouTubeAndroidPlayerAPI: Embed config is not supported in RemoteEmbeddedPlayer." and 
 "E/BufferQueueProducer: [unnamed-11582-1] setMaxDequeuedBufferCount: 2 dequeued buffers would exceed the maxBufferCount (2) (maxAcquired 1 async 0 mDequeuedBufferCannotBlock 0)" that I cannot figure out. 
+
+
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
