@@ -16,12 +16,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.flixster.DetailActivity;
 import com.example.flixster.MainActivity;
@@ -79,6 +83,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageView ivIcon;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -86,6 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            ivIcon = itemView.findViewById(R.id.ivIcon);
             container  = itemView.findViewById(R.id.container);
 
         }
@@ -94,6 +100,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+
             String imageURL;
 
 
@@ -109,6 +116,31 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
             Glide.with(context)
                     .load(imageURL)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            if(movie.getRating() > 5) {
+                                ivIcon.setImageResource(R.drawable.yt_icon_rgb);
+                                ivIcon.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                ivIcon.setVisibility(View.INVISIBLE);
+                            }
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            if(movie.getRating() > 5) {
+                                ivIcon.setImageResource(R.drawable.yt_icon_rgb);
+                                ivIcon.setVisibility(View.VISIBLE);
+                            }
+                            else{
+                                ivIcon.setVisibility(View.INVISIBLE);
+                            }
+                            return false;
+                        }
+                    })
                     .transform(new FitCenter(), new RoundedCornersTransformation(30, 10))
                     .placeholder(R.drawable.placeholder)
                     .into(ivPoster);
