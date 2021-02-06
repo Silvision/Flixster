@@ -22,12 +22,14 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 
 ### App Walkthough GIF
 
-<img src="https://github.com/Silvision/Flixster/blob/main/walkthrough2.gif" width=250><br>
+<img src="https://github.com/Silvision/Flixster/blob/main/walkthroughPart2.gif" width=250><br>
 
 ### Notes
 
-While the app is still working fine, I keep seeing errors such as "E/YouTubeAndroidPlayerAPI: Embed config is not supported in RemoteEmbeddedPlayer." and 
+- While the app is still working fine, I keep seeing errors such as "E/YouTubeAndroidPlayerAPI: Embed config is not supported in RemoteEmbeddedPlayer." and 
 "E/BufferQueueProducer: [unnamed-11582-1] setMaxDequeuedBufferCount: 2 dequeued buffers would exceed the maxBufferCount (2) (maxAcquired 1 async 0 mDequeuedBufferCannotBlock 0)" that I cannot figure out. 
+
+
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
